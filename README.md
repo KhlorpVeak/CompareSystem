@@ -7,7 +7,7 @@ This project contains an interactive Dashboard with a frontend built with Vite a
 Follow these steps to set up the project on your local machine:
 
 1.  **Install project dependencies**:
-    Run the following command from the root directory (`Dashboard/`). This will automatically trigger the installation of dependencies for both the `app/web` and `app/api` folders:
+    Run the following command from the root directory (`CompareSystem/`). This will automatically trigger the installation of dependencies for both the `app/web` and `app/api` folders:
     ```bash
     npm install
     ```
@@ -35,7 +35,7 @@ You can run both the frontend and the backend from the root directory.
 
 ### Quick Start Command
 
-From the root directory (`Dashboard/`):
+From the root directory (`CompareSystem/`):
 ```bash
 npx tsx run.ts
 ```

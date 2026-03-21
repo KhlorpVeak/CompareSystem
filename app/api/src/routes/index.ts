@@ -14,9 +14,9 @@ routes.get('/health', (c) => c.json({ status: 'ok', time: new Date() }));
 routes.doc('/api/doc', {
   openapi: '3.0.0',
   info: {
-    title: 'Dashboard API',
+    title: 'CompareSystem API',
     version: '1.0.0',
-    description: 'Dashboard API',
+    description: 'CompareSystem API',
   },
 });
 
