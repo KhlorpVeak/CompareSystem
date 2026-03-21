@@ -1,0 +1,16 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix app/web && npm install --prefix app/api",
+    "start": "npx tsx app.ts",
+    "dev": "npm run dev --prefix app/web",
+    "api": "npm run api --prefix app/api"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.1",
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}
