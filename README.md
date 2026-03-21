@@ -1,6 +1,6 @@
-# Dashboard Project
+# CompareSystem Project
 
-This project contains an interactive Dashboard with a frontend built with Vite and a backend built with Node.js/Express and Hono.
+This project contains an interactive CompareSystem with a frontend built with Vite and a backend built with Node.js/Express and Hono.
 
 ## Installation Flow
 
