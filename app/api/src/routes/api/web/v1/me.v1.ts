@@ -10,11 +10,11 @@ const getMeRoute = createRoute({
   method: 'get',
   path: '/v1/me',
   tags: ['Web'],
-  security: [
-    {
-      Bearer: [],
-    },
-  ],
+  // security: [
+  //   {
+  //     Bearer: [],
+  //   },
+  // ],
   responses: {
     200: {
       content: {

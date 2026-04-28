@@ -2,11 +2,12 @@
   "name": "dashboard",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@9.0.0",
   "scripts": {
-    "postinstall": "npm install --prefix app/web && npm install --prefix app/api",
-    "start": "npx tsx app.ts",
-    "dev": "npm run dev --prefix app/web",
-    "api": "npm run api --prefix app/api"
+    "web": "pnpm --filter my-project dev",
+    "api": "pnpm --filter my-server api",
+    "api:build": "pnpm --filter my-server build",
+    "web:build": "pnpm --filter my-project build"
   },
   "devDependencies": {
     "tsx": "^4.7.1",
