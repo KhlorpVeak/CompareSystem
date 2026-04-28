@@ -1,6 +1,6 @@
 import { createRoute, z } from '@hono/zod-openapi';
-import { db } from '../../../../libs/db.js';
-import { AdminProfileSchema } from '../../../../type/schema.js';
+import { db } from '@comparesystem/db';
+import { AdminProfileSchema } from '@comparesystem/shared';
 import { UserService } from '../../../../services/user.service.js';
 
 const userService = new UserService(db);
@@ -10,11 +10,6 @@ const getMeRoute = createRoute({
   method: 'get',
   path: '/v1/me',
   tags: ['Web'],
-  // security: [
-  //   {
-  //     Bearer: [],
-  //   },
-  // ],
   responses: {
     200: {
       content: {

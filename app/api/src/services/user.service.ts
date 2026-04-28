@@ -1,9 +1,6 @@
-import { Kysely } from 'kysely';
-import { Database } from '../type/database.js';
+import { BaseService } from "./base.service.js";
 
-export class UserService {
-  constructor(private db: Kysely<Database>) { }
-
+export class UserService extends BaseService {
   async getCurrentUserProfile(userId: number) {
     // Implementing actual query from the users table
     const result = await this.db

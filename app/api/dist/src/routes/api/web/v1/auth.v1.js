@@ -1,7 +1,4 @@
 import { createRoute, z } from '@hono/zod-openapi';
-import { db } from '../../../../libs/db.js';
-import { UserService } from '../../../../services/user.service.js';
-const userService = new UserService(db);
 const registerRoute = createRoute({
     method: 'post',
     path: '/v1/auth/register',

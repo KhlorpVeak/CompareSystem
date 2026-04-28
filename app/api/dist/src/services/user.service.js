@@ -1,8 +1,5 @@
-export class UserService {
-    db;
-    constructor(db) {
-        this.db = db;
-    }
+import { BaseService } from "./base.service.js";
+export class UserService extends BaseService {
     async getCurrentUserProfile(userId) {
         // Implementing actual query from the users table
         const result = await this.db
