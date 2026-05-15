@@ -1,8 +1,8 @@
 import type { ZodError } from 'zod';
 
-import { BaseError } from './base-error';
-import { parseZodErrorIssues } from './utils';
-import { ErrorCode } from './error-code';
+import { BaseError } from './base-error.js';
+import { parseZodErrorIssues } from './utils.js';
+import { ErrorCode } from './error-code.js';
 
 type Context = { raw: unknown };
 

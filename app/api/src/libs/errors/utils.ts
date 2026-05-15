@@ -14,7 +14,7 @@ import { ZodError } from 'zod';
 
 export function handleError(err: Error, c: Context): Response {
   if (err instanceof ZodError) {
-    const error = SchemaError.fromZod(err, c);
+    const error = SchemaError.fromZod(err as any, c);
 
     // If the error is a client error, we disable Sentry
     c.get('sentry')?.setEnabled(false);
@@ -33,11 +33,9 @@ export function handleError(err: Error, c: Context): Response {
    * This is a custom error that we throw in our code so we can handle it
    */
   if (err instanceof BaseHTTPException || err instanceof HTTPException) {
-    // @ts-expect-error - status exists on HTTPException
     const code = statusToCode(err.status);
 
     // If the error is a client error, we disable Sentry
-    // @ts-expect-error - status exists on HTTPException
     if (err.status < 499) {
       c.get('sentry')?.setEnabled(false);
     }
@@ -48,7 +46,6 @@ export function handleError(err: Error, c: Context): Response {
         message: err.message,
         requestId: c.get('requestId'),
       },
-      // @ts-expect-error - status exists on HTTPException
       { status: err.status },
     );
   }
@@ -79,7 +76,7 @@ export function handleZodError(
   c: Context,
 ) {
   if (!result.success) {
-    const error = SchemaError.fromZod(result.error, c);
+    const error = SchemaError.fromZod(result.error as any, c);
     return c.json<z.infer<ReturnType<typeof createErrorSchema>>>(
       {
         code: 'BAD_REQUEST',

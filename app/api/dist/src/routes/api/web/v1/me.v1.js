@@ -7,7 +7,7 @@ const userService = new UserService(db);
 const getMeRoute = createRoute({
     method: 'get',
     path: '/v1/me',
-    tags: ['Web', 'Profile'],
+    tags: ['Profile'],
     security: [
         {
             Bearer: [],

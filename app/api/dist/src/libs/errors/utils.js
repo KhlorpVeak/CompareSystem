@@ -18,10 +18,8 @@ export function handleError(err, c) {
      * This is a custom error that we throw in our code so we can handle it
      */
     if (err instanceof BaseHTTPException || err instanceof HTTPException) {
-        // @ts-expect-error - status exists on HTTPException
         const code = statusToCode(err.status);
         // If the error is a client error, we disable Sentry
-        // @ts-expect-error - status exists on HTTPException
         if (err.status < 499) {
             c.get('sentry')?.setEnabled(false);
         }
@@ -29,9 +27,7 @@ export function handleError(err, c) {
             code: code,
             message: err.message,
             requestId: c.get('requestId'),
-        }, 
-        // @ts-expect-error - status exists on HTTPException
-        { status: err.status });
+        }, { status: err.status });
     }
     return c.json({
         code: 'INTERNAL_SERVER_ERROR',

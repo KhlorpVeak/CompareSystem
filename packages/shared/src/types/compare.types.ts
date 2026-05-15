@@ -5,7 +5,7 @@ export interface CompareItem {
     date: string;
 }
 
-export interface CreateCompareDTO {
+export type CreateCompareDTO = {
     full_name: string;
     price: string;
     date: string;

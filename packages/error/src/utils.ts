@@ -1,5 +1,5 @@
 import type { ZodIssue } from 'zod';
-import { ErrorCode } from './error-code';
+import { ErrorCode } from './error-code.js';
 
 export function statusToCode(status: number): ErrorCode {
   switch (status) {
