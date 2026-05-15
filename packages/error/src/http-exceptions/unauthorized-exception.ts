@@ -1,4 +1,4 @@
-import { BaseHTTPException, HTTPExceptionOptions } from './base-exception';
+import { BaseHTTPException, HTTPExceptionOptions } from './base-exception.js';
 
 export class UnauthorizedException extends BaseHTTPException {
   constructor(opts?: HTTPExceptionOptions) {

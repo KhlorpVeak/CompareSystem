@@ -1,29 +1,23 @@
 import { BaseService } from "./base.service.js";
 
 export class UserService extends BaseService {
-  async getCurrentUserProfile(userId: number) {
-    // Implementing actual query from the users table
-    const result = await this.db
-      .selectFrom('users')
-      .selectAll()
-      .where('id', '=', userId as any)
+
+  // list me
+  async getMe(userId: number) {
+    return await this.db
+      .selectFrom('profile')
+      .select([
+        "profile.first_name",
+        "profile.last_name",
+        "profile.userId",
+        "profile.created_at",
+        "profile.updated_at"
+      ])
+      .where('profile.userId', '=', userId)
       .executeTakeFirst();
-
-    // Fallback if not found in db
-    if (!result) {
-      return {
-        id: userId,
-        name: 'John Doe',
-        email: 'john@example.com',
-        role: 'SUPERADMIN'
-      };
-    }
-
-    return result;
   }
 
   async UserListAll() {
-    // In a real app:
     return await this.db.selectFrom('users').selectAll().execute();
   }
 }

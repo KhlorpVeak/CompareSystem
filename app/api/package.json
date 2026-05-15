@@ -16,6 +16,7 @@
   "description": "",
   "dependencies": {
     "@comparesystem/db": "workspace:*",
+    "@comparesystem/error": "workspace:*",
     "@comparesystem/shared": "workspace:^",
     "@hono/node-server": "^1.19.11",
     "@hono/swagger-ui": "^0.6.1",

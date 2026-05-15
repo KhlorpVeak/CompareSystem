@@ -9,15 +9,17 @@ const userService = new UserService(db);
 const getMeRoute = createRoute({
   method: 'get',
   path: '/v1/me',
-  tags: ['Web'],
+  tags: ['Profile'],
+  security: [
+    {
+      Bearer: [],
+    },
+  ],
   responses: {
     200: {
       content: {
         'application/json': {
-          schema: z.object({
-            success: z.boolean(),
-            data: AdminProfileSchema,
-          }),
+          schema: AdminProfileSchema,
         },
       },
       description: 'Get current user profile successfully',
@@ -28,14 +30,9 @@ const getMeRoute = createRoute({
 // function return
 export function registerGetMeRoute(api: any) {
   return api.openapi(getMeRoute, async (c: any) => {
-    const user = c.get('user').id;
-    const userProfile = await userService.getCurrentUserProfile(user);
-    return c.json(
-      {
-        success: true,
-        data: userProfile,
-      },
-      200
-    );
+    const user = c.get('users');
+    const userId = user.id;
+    const userProfile = await userService.getMe(userId);
+    return c.json(userProfile, 200);
   });
 }

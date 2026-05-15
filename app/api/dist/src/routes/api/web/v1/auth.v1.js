@@ -66,13 +66,11 @@ const loginRoute = createRoute({
 export function registerAuthRoute(api) {
     api.openapi(registerRoute, async (c) => {
         const body = await c.req.json();
-        console.log('Registering user:', body);
         // For now, just simulated
         return c.json({ success: true, message: 'User registered' }, 201);
     });
     api.openapi(loginRoute, async (c) => {
         const body = await c.req.json();
-        console.log('Login attempt:', body);
         // For now, just simulated
         if (body.email === 'admin@example.com' && body.password === 'password') {
             return c.json({ success: true, token: 'fake-jwt-token' }, 200);

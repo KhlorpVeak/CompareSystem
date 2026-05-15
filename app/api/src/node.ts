@@ -1,12 +1,16 @@
-import { serve } from '@hono/node-server';
-import { routes } from './routes/index.js';
 import 'dotenv/config';
+import { serve } from '@hono/node-server';
+import { app } from './index.js';
 
-const port = process.env.PORT ? parseInt(process.env.PORT) : 4005;
+const port = process.env.PORT ? parseInt(process.env.PORT) : 5001;
+serve(
+  {
+    fetch: app.fetch,
+    port,
+  },
+  (info) => {
+    console.log(`Server is running on http://localhost:${info.port}`);
+  }
+);
 
-console.log(`server running on http://localhost:${port}`);
-
-serve({
-  fetch: routes.fetch,
-  port
-});
+export { app };

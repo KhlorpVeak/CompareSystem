@@ -1,17 +1,32 @@
 import { Hono } from 'hono';
+import { showRoutes } from 'hono/dev';
+import { requestId } from 'hono/request-id';
 import { logger } from 'hono/logger';
-import { api } from './routes/api/index.js';
+import { prettyJSON } from 'hono/pretty-json';
+import { handleError } from './libs/errors/utils.js';
+import { routes } from './routes/index.js';
+import { cors } from 'hono/cors';
 
-// Initialize Hono App
 const app = new Hono();
 
-// Global Middlewares
+// Middleware
+app.use('*', requestId());
 app.use('*', logger());
+app.use('*', prettyJSON());
+app.use('*', cors());
 
-// Check health
-app.get('/health', (c) => c.json({ status: 'ok', time: new Date() }));
+app.onError(handleError);
 
-// Register routes
-app.route('/api', api);
+app.get('/ping', (c) => {
+    return c.json({ ping: 'pong', requestId: c.get('requestId') }, 200);
+});
 
-export default app;
+app.route('/', routes);
+
+const isDev = process.env.NODE_ENV === 'comaresystem';
+
+if (isDev) {
+    showRoutes(app, { verbose: true, colorize: true });
+}
+
+export { app };

@@ -1,3 +1,3 @@
-export * from './base-exception';
-export * from './bad-request-exception';
-export * from './unauthorized-exception';
+export * from './base-exception.js';
+export * from './bad-request-exception.js';
+export * from './unauthorized-exception.js';

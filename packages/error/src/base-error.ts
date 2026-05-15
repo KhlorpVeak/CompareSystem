@@ -1,4 +1,4 @@
-import type { ErrorCode } from './error-code';
+import type { ErrorCode } from './error-code.js';
 
 type ErrorContext = Record<string, unknown>;
 

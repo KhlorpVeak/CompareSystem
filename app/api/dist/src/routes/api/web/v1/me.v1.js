@@ -1,4 +1,4 @@
-import { createRoute, z } from '@hono/zod-openapi';
+import { createRoute } from '@hono/zod-openapi';
 import { db } from '@comparesystem/db';
 import { AdminProfileSchema } from '@comparesystem/shared';
 import { UserService } from '../../../../services/user.service.js';
@@ -7,15 +7,17 @@ const userService = new UserService(db);
 const getMeRoute = createRoute({
     method: 'get',
     path: '/v1/me',
-    tags: ['Web'],
+    tags: ['Web', 'Profile'],
+    security: [
+        {
+            Bearer: [],
+        },
+    ],
     responses: {
         200: {
             content: {
                 'application/json': {
-                    schema: z.object({
-                        success: z.boolean(),
-                        data: AdminProfileSchema,
-                    }),
+                    schema: AdminProfileSchema,
                 },
             },
             description: 'Get current user profile successfully',
@@ -25,11 +27,9 @@ const getMeRoute = createRoute({
 // function return
 export function registerGetMeRoute(api) {
     return api.openapi(getMeRoute, async (c) => {
-        const user = c.get('user').id;
-        const userProfile = await userService.getCurrentUserProfile(user);
-        return c.json({
-            success: true,
-            data: userProfile,
-        }, 200);
+        const user = c.get('users');
+        const userId = user.id;
+        const userProfile = await userService.getMe(userId);
+        return c.json(userProfile, 200);
     });
 }

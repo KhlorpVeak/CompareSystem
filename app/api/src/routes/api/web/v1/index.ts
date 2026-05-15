@@ -4,5 +4,5 @@ import { registerAuthRoute } from "./auth.v1.js";
 
 export const user_v1 = new OpenAPIHono();
 
-registerGetMeRoute(user_v1);
 registerAuthRoute(user_v1);
+registerGetMeRoute(user_v1);

@@ -23,6 +23,9 @@ importers:
       '@comparesystem/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@comparesystem/error':
+        specifier: workspace:*
+        version: link:../../packages/error
       '@comparesystem/shared':
         specifier: workspace:^
         version: link:../../packages/shared
