@@ -1,7 +1,7 @@
 import { createRoute, z } from '@hono/zod-openapi';
 import { db } from '@comparesystem/db';
 import { AdminProfileSchema } from '@comparesystem/shared';
-import { UserService } from '../../../../services/user.service.js';
+import { UserService } from '../../../../services/v1/user.service.js';
 
 const userService = new UserService(db);
 

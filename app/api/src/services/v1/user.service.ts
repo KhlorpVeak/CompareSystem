@@ -1,4 +1,5 @@
-import { BaseService } from "./base.service.js";
+import { jsonObjectFrom } from "kysely/helpers/mysql";
+import { BaseService } from "../base.service.js";
 
 export class UserService extends BaseService {
 
@@ -16,8 +17,5 @@ export class UserService extends BaseService {
       .where('profile.userId', '=', userId)
       .executeTakeFirst();
   }
-
-  async UserListAll() {
-    return await this.db.selectFrom('users').selectAll().execute();
-  }
 }
+

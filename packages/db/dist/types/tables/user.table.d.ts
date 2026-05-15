@@ -1,5 +1,4 @@
-import { Generated, ColumnType } from 'kysely';
-
+import { Generated } from 'kysely';
 export interface UserTable {
     id: Generated<number>;
     email: string;
@@ -8,3 +7,4 @@ export interface UserTable {
     created_at: Date;
     updated_at: Date;
 }
+//# sourceMappingURL=user.table.d.ts.map

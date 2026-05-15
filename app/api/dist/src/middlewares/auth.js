@@ -1,7 +1,8 @@
 import { UnauthorizedException } from '@comparesystem/error';
 import { db } from '@comparesystem/db';
 export const authMiddleware = async (c, next) => {
-    if (c.get('noAuth')) {
+    const isAuthRoute = c.req.path.includes('/auth/register') || c.req.path.includes('/auth/login');
+    if (c.get('noAuth') || isAuthRoute) {
         await next();
         return;
     }
